@@ -5,11 +5,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class WinningNumbers {
+public class WinningResult {
     private final List<Integer> mainNumbers;
     private final int bonusNumber;
 
-    public WinningNumbers(String rawMainNumbers, String rawBonusNumber) {
+    public WinningResult(String rawMainNumbers, String rawBonusNumber) {
         this.mainNumbers = parseMainNumbers(rawMainNumbers);
         this.bonusNumber = parseBonusNumber(rawBonusNumber);
         validateAll();
