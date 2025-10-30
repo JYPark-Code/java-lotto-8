@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -14,9 +16,46 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        validateNoDuplicate(numbers);
+        validateRange(numbers);
     }
 
-    // TODO: 추가 기능 구현
+    private void validateNoDuplicate(List<Integer> numbers) {
+        if (new HashSet<>(numbers).size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        for (Integer n : numbers) {
+            if (n < 1 || n > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이 숫자여야 합니다.");
+            }
+        }
+    }
+
+    private List<Integer> sort(List<Integer> numbers) {
+        Collections.sort(numbers);
+        return numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int countMatchWith(List<Integer> winningNumbers) {
+        int count = 0;
+        for (Integer n : numbers) {
+            if (winningNumbers.contains(n)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public boolean contains(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 
 
 }
